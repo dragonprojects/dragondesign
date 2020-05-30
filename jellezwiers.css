@@ -1,0 +1,268 @@
+/*Initial*/
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+}
+
+/*Colour palette*/
+:root {
+  --text-color: white;
+  --accent-color: #149dcc;
+  --background-color: rgb(20,25,35);
+}
+
+/*Scrollbar*/
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #aaa;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+/*Document-wide*/
+h1, h2, h3, h4, h5, h6, p, a, span, table, form {
+  font-family: 'Ubuntu', sans-serif;
+  color: var(--text-color);
+}
+
+a:link, a:visited {
+  color: var(--accent-color);
+  text-decoration: none;
+  scroll-behavior: smooth;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size .25s;
+}
+
+a:hover, a:focus {
+  background-size: 100% 2px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 500px;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(255,255,255,0.1);
+}
+
+code {
+  font-family: 'Ubuntu Mono', monospace;
+}
+
+::placeholder {
+   color: grey;
+   opacity: 1;
+}
+
+::selection {
+  color: white;
+  background-color: var(--accent-color);
+}
+
+body > div {
+  margin: 50px 10vw  50px 10vw;
+  scroll-margin-top: 25px;
+}
+
+@media (max-width: 960px) {
+  body > div {
+    margin: 50px 5vw 50px 5vw;
+  }
+}
+
+/*Body*/
+
+#header {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(slategrey, var(--background-color));;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0;
+}
+
+#header h1 {
+  text-shadow: 0px 0px 200px var(--text-color);
+  color: var(--text-color);
+  font-size: calc(75px + 5vw);
+  margin: 0;
+}
+
+#header h1:after {
+  content: " Zwiers";
+  white-space: pre;
+}
+
+@media (max-width:750px) {
+  #header h1:after {
+    content: " Z.";
+    white-space: pre;
+  }
+}
+
+@media (max-width:450px) {
+  #header h1:after {
+    content: none;
+    white-space: pre;
+  }
+}
+
+#github > div {
+  width: 100%;
+  overflow-x: auto;
+  direction: rtl;
+}
+
+#github > div > img {
+  display: block;
+  margin-right: auto;
+}
+
+#contact fieldset {
+  border-radius: 5px;
+  border: 1px solid white;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-block-start: 0;
+  padding-block-end: 0;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  padding: 1em;
+}
+
+#contact fieldset:first-child input {
+  max-width: 50%;
+  margin-bottom: 1em;
+}
+
+@media (max-width: 750px) {
+  #contact fieldset:first-child input {
+    max-width: 100%;
+  }
+}
+
+#contact fieldset input:not([type="submit"]), #contact fieldset textarea {
+  color: var(--text-color);
+  width: 100%;
+  margin-bottom: 1em;
+  box-sizing: border-box;
+  resize: none;
+}
+
+#contact input, #contact textarea {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 300;
+  /*Experimental*/
+  font-size: 0.9em;
+  padding: 7px 8px 7px 8px;
+  border-radius: 5px;
+  border: 1px solid white;
+  background-color: rgba(0,0,0,0.3);
+}
+
+#contact input[type="submit"]{
+  font-weight: 700;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+}
+
+#accounts {
+  margin-bottom: 40px;
+}
+
+#accounts a {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+#accounts h3:first-of-type {
+  margin-block-start: 1em;
+}
+
+#accounts h3 {
+  margin-block-start: calc(1em - 10px);
+}
+
+#footer {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  padding: 25px 10vw 25px 10vw;
+  background-color: rgba(0,0,0,0.3);
+}
+
+#footer p {
+  text-align: center;
+  margin-top: 5px;
+}
+
+#footer > footer > div {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#footer > footer > div > img {
+  display: inline-block;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+/* Compatibility */
+#github > div {
+  -webkit-overflow-scrolling: touch;
+}
+
+/*PACE*/
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  margin: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.pace-inactive {
+  display: none;
+}
+
+.pace .pace-progress {
+  background: #fff;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  height: 2px;
+}
