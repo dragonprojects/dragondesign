@@ -17,6 +17,10 @@
   --nav-background: rgba(255,255,255,0.75);
 
   --details-background: rgba(0,0,0,0.25);
+  --details-padding: .75em;
+
+  --mark-color: black;
+  --mark-background: rgb(239,219,67)
 }
 
 /* Body */
@@ -28,8 +32,30 @@ body {
   color: var(--body-color);
   background: var(--body-background);
   scrollbar-color: var(--body-scrollbar-color);
-  text-rendering: optimizeLegibility;
   line-height: 1.5
+  text-rendering: optimizeLegibility;
+}
+
+body > div {
+  margin: 50px 10vw  50px 10vw;
+}
+
+@media (max-width: 960px) {
+  body > div {
+    margin: 50px 5vw 50px 5vw;
+  }
+}
+
+body > * {
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
+@media (max-width: 960px) {
+  body > * {
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
 }
 
 /* Text */
@@ -60,30 +86,19 @@ textarea {
   resize: none;
 }
 
-summary {
-  display: list-item;
-  border-radius: 5px;
-  padding: 0.5em;
-  margin: -10px -10px 0;
-}
-
-summary::-webkit-details-marker {
-  color: var(--body-color);
-}
-
 details {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border-radius: 5px;
   background-color: var(--details-background);
-  padding: 10px 10px 0;
-  margin: 1em 0;
+  padding: var(--details-padding) var(--details-padding) 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-radius: 5px;
   overflow: hidden;
 }
-
 details[open] {
-  padding: 10px;
+  padding: var(--details-padding)
 }
 
 details > :last-child {
@@ -94,8 +109,22 @@ details[open] summary {
   margin-bottom: 10px;
 }
 
+summary {
+  display: list-item;
+  padding: var(--details-padding);
+  margin: calc(-1 * var(--details-padding)) calc(-1 * var(--details-padding)) 0;
+}
+
 details > :not(summary) {
   margin-top: 0;
+}
+
+mark {
+  background: var(--mark-background);
+  color: var(--mark-color);
+  border-radius: .1em;
+  display: inline-block;
+  padding: .125em;
 }
 
 /* Navigation */
@@ -103,7 +132,7 @@ nav {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-around;
-  align-items: center;
+  align-items: center;﻿
   height: 30px;
   width: 100%;
   color: var(--nav-color);
@@ -112,6 +141,8 @@ nav {
   position: sticky;
   top: 0;
   left: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 nav * {
@@ -150,7 +181,7 @@ fieldset {
 /* Animations */
 
 details[open] summary ~ * {
-  animation: sweep 0.05s ease-in-out;
+  animation: sweep 0.025s ease-in-out;
 }
 
 @keyframes sweep {
