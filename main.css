@@ -20,7 +20,9 @@
   --details-padding: .75em;
 
   --mark-color: black;
-  --mark-background: rgb(239,219,67)
+  --mark-background: rgb(239,219,67);
+
+  --table-max-width: 500px;
 }
 
 /* Body */
@@ -122,9 +124,24 @@ details > :not(summary) {
 mark {
   background: var(--mark-background);
   color: var(--mark-color);
-  border-radius: .1em;
+  border-radius: 2.5px;
   display: inline-block;
-  padding: .125em;
+  padding: 0.15em;
+}
+
+table {
+  border-collapse: separate;
+  border: 1px solid white;
+  border-spacing: 0;
+  border-radius: 2.5px;
+  width: 100%;
+  max-width: var(--table-max-width);
+}
+
+td, th {
+  border: 1px solid white;
+  text-align: left;
+  padding: 0.5em;
 }
 
 /* Navigation */
