@@ -9,7 +9,7 @@
 :root {
   --body-color: rgb(250,250,250);
   --body-background: rgb(30,40,60);
-  --body-font-family: Ubuntu;
+  --body-font-family: 'Jost';
   --body-scrollbar-color: dark;
 
   --a-color: white;
@@ -34,7 +34,14 @@
 
   --select-border-color: white;
   --select-glyph: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+
+  --input-border-color: white;
+  --input-max-width: 500px;
 }
+
+/* Import rules */
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&family=Oxygen+Mono&display=swap');
 
 /* Body */
 
@@ -267,6 +274,29 @@ select[multiple] {
 
 select[multiple] > option {
   color: var(--body-color);
+}
+
+/* Input */
+
+input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea {
+  color: var(--body-color);
+  background: rgba(0,0,0,.25);
+  padding: 0.5em;
+  width: 100%;
+  max-width: var(--input-max-width);
+  margin-bottom: 1em;
+  box-sizing: border-box;
+  resize: none;
+  border-radius: 0.5em;
+  border: 1px solid var(--input-border-color);
+}
+
+input:disabled:not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  background: rgba(255,255,255,.1)
+}
+
+input[type="submit"] {
+  cursor: pointer;
 }
 
 /* Animations */
