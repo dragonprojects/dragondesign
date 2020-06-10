@@ -1,8 +1,14 @@
+/* TO-DO list
+- Fix foxus styling
+- Make the select SVG glyph color changable with a CSS variable
+- Allow overflow in navigation for small screens
+/*
+
 /* Variables */
 
 :root {
-  --body-color: white;
-  --body-background: rgb(0,35,102);
+  --body-color: rgb(250,250,250);
+  --body-background: rgb(30,40,60);
   --body-font-family: Ubuntu;
   --body-scrollbar-color: dark;
 
@@ -23,6 +29,11 @@
   --mark-background: rgb(239,219,67);
 
   --table-max-width: 500px;
+  --table-border-color: white;
+  --table-tr-even-background: rgba(255,255,255,0.1);
+
+  --select-border-color: white;
+  --select-glyph: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
 }
 
 /* Body */
@@ -80,12 +91,17 @@ a {
   scroll-behavior: smooth;
   text-decoration: underline;
   text-decoration-color: var(--a-text-decoration-color);
+  transition: color .15s ease;
   text-decoration-skip: edges;
   text-decoration-skip-ink: auto;
 }
 
+a:hover {
+  color: var(--a-text-decoration-color);
+}
+
 textarea {
-  resize: none;
+  resize: vertical;
 }
 
 details {
@@ -99,6 +115,7 @@ details {
   border-radius: 5px;
   overflow: hidden;
 }
+
 details[open] {
   padding: var(--details-padding)
 }
@@ -115,6 +132,7 @@ summary {
   display: list-item;
   padding: var(--details-padding);
   margin: calc(-1 * var(--details-padding)) calc(-1 * var(--details-padding)) 0;
+  user-select: none;
 }
 
 details > :not(summary) {
@@ -129,19 +147,28 @@ mark {
   padding: 0.15em;
 }
 
+/* Tables */
+
 table {
-  border-collapse: separate;
-  border: 1px solid white;
-  border-spacing: 0;
-  border-radius: 2.5px;
+  border-collapse: collapse;
   width: 100%;
   max-width: var(--table-max-width);
 }
 
-td, th {
-  border: 1px solid white;
+table > tbody > tr > td, table > tbody > tr > th {
+  border: 1px solid var(--table-border-color);
   text-align: left;
   padding: 0.5em;
+}
+
+table > tbody > tr:nth-child(even) {
+  background: var(--table-tr-even-background);
+}
+
+table > thead > tr > td, table > thead > tr > th, table > tfoot > tr > td, table > tfoot > tr > th {
+  padding: 0.5em;
+  border: none;
+  text-align: center;
 }
 
 /* Navigation */
@@ -195,10 +222,57 @@ fieldset {
   padding: 1em;
 }
 
+/* Select */
+
+select {
+	display: inline-block;
+	font-size: 1em;
+	color: var(--body-color);
+	padding: .5em;
+	width: 100%;
+	max-width: 500px;
+	box-sizing: border-box;
+	border: 1px solid var(--select-border-color);
+	box-shadow: none;
+	border-radius: .5em;
+  -moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background: rgba(0,0,0,.25);
+	background-image: var(--select-glyph);
+	background-repeat: no-repeat, repeat;
+	background-position: right .7em top 50%, 0 0;
+	background-size: .65em auto, 100%;
+}
+
+select::-ms-expand {
+	display: none;
+}
+
+select option {
+	font-weight:normal;
+}
+
+select[multiple] {
+  color: var(--body-color);
+	display: inline-block;
+	color: #444;
+	padding: 0.5em;
+	width: 100%;
+	max-width: 250px;
+	box-sizing: border-box;
+	border: 1px solid var(--select-border-color);
+	background: rgba(0,0,0,.25);
+}
+
+select[multiple] > option {
+  color: var(--body-color);
+}
+
 /* Animations */
 
 details[open] summary ~ * {
-  animation: sweep 0.025s ease-in-out;
+  animation: sweep 0.1s ease-in-out;
 }
 
 @keyframes sweep {
