@@ -221,7 +221,7 @@ img {
   margin-right: auto;
 }
 
-/* Inputs */
+/* Forms */
 
 fieldset {
   border-radius: 5px;
@@ -234,6 +234,8 @@ fieldset {
   padding-inline-end: 0;
   padding: 1em;
 }
+
+/* Inputs */
 
 select {
   font-size: var(--input-font-size);
@@ -301,7 +303,7 @@ input:disabled:not([type="submit"]):not([type="checkbox"]):not([type="radio"]):n
   background: var(--input-disabled-background);
 }
 
-input[type="submit"] {
+button, select, input[type='submit'], input[type='button'], input[type='checkbox'], input[type='range'], input[type='radio'] {
   cursor: pointer;
 }
 
