@@ -2,6 +2,8 @@
 - Fix focus styling
 - Make the select SVG glyph color changable with a CSS variable
 - Allow overflow in navigation for small screens
+- Fix code blocks
+- Add styling for vars and kbd
 /*
 
 /* Variables */
@@ -37,6 +39,8 @@
 
   --input-border-color: white;
   --input-max-width: 500px;
+  --input-font-size: 1em;
+  --input-disabled-background: rgba(255,255,255,.1);
 }
 
 /* Import rules */
@@ -91,6 +95,8 @@ code {
   padding: 0.5em;
   border-radius: 5px;
   display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 a {
@@ -215,7 +221,7 @@ img {
   margin-right: auto;
 }
 
-/* Forms */
+/* Inputs */
 
 fieldset {
   border-radius: 5px;
@@ -229,9 +235,8 @@ fieldset {
   padding: 1em;
 }
 
-/* Select */
-
 select {
+  font-size: var(--input-font-size);
 	display: inline-block;
 	font-size: 1em;
 	color: var(--body-color);
@@ -257,7 +262,7 @@ select::-ms-expand {
 }
 
 select option {
-	font-weight:normal;
+	font-weight: normal;
 }
 
 select[multiple] {
@@ -265,6 +270,7 @@ select[multiple] {
 	display: inline-block;
 	color: #444;
 	padding: 0.5em;
+  border-radius: 0;
 	width: 100%;
 	max-width: 250px;
 	box-sizing: border-box;
@@ -276,10 +282,10 @@ select[multiple] > option {
   color: var(--body-color);
 }
 
-/* Input */
-
 input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea {
+  font-size: var(--input-font-size);
   color: var(--body-color);
+  font-family: var(--body-font-family), sans-serif;
   background: rgba(0,0,0,.25);
   padding: 0.5em;
   width: 100%;
@@ -292,7 +298,7 @@ input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type=
 }
 
 input:disabled:not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
-  background: rgba(255,255,255,.1)
+  background: var(--input-disabled-background);
 }
 
 input[type="submit"] {
