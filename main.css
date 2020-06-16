@@ -271,7 +271,7 @@ select[multiple] > option {
   color: var(--body-color);
 }
 
-@supports(appearance: none) {
+@supports(-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none) {
   input[type='checkbox'], input[type='radio'] {
     appearance: none;
     -webkit-appearance: none;
