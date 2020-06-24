@@ -17,6 +17,7 @@
   --body-margin: 10vw;
   --body-max-width: 1920px;
   --body-div-margin: 0;
+  --body-div-padding: 0;
   --body-div-max-width: none;
 
   --a-color: white;
@@ -26,7 +27,11 @@
   --code-background: rgba(0,0,0,0.25);
   --code-font-family: 'Oxygen Mono', monospace;
 
+  --kbd-font-family: var(--code-font-family);
   --kbd-border: 1px solid white;
+
+  --var-font-family: var(--code-font-family);
+  --var--color: orange;
 
   --nav-color: black;
   --nav-background: rgba(255,255,255,0.75);
@@ -52,6 +57,9 @@
   --input-max-width: 500px;
   --input-font-size: 1em;
   --input-disabled-background: rgba(255,255,255,.1);
+
+  --button-background: #09c5f4;
+  --button-color: white;
 }
 
 /* Body */
@@ -73,6 +81,8 @@ body {
 body > div {
   margin-left: var(--body-div-margin);
   margin-right: var(--body-div-margin);
+  padding-left: var(--body-div-padding);
+  padding-right: var(--body-div-padding);
   max-width: var(--body-max-width);
 }
 
@@ -110,12 +120,19 @@ code {
 }
 
 kbd {
+  font-family: var(--kbd-font-family);
   display: inline-block;
   user-select: all;
   padding: 0.5em;
   border-radius: 5px;
   border: var(--kbd-border);
   font-family: var(--body-font-family);
+}
+
+var {
+  color: var(--var-color);
+  font-style: normal;
+  font-family: var(--var-font-family);
 }
 
 a {
@@ -275,6 +292,7 @@ select {
 }
 
 select option {
+  background: var(--body-background);
 	font-weight: normal;
 }
 
@@ -293,6 +311,7 @@ select[multiple] {
 
 select[multiple] > option {
   color: var(--body-color);
+  background: rgba(0,0,0,0);
 }
 
 @supports(-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none) {
@@ -300,50 +319,50 @@ select[multiple] > option {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    }
+  }
 
-    select {
-      font-size: var(--input-font-size);
-    	display: inline-block;
-    	font-size: 1em;
-    	color: var(--body-color);
-    	padding: .5em;
-    	width: 100%;
-    	max-width: 500px;
-    	box-sizing: border-box;
-    	border: 1px solid var(--select-border-color);
-    	box-shadow: none;
-    	border-radius: .5em;
-      -moz-appearance: none;
-    	-webkit-appearance: none;
-    	appearance: none;
-    	background: rgba(0,0,0,.25);
-    	background-image: var(--select-glyph);
-    	background-repeat: no-repeat, repeat;
-    	background-position: right .7em top 50%, 0 0;
-    	background-size: .65em auto, 100%;
-    }
+  select {
+    font-size: var(--input-font-size);
+    display: inline-block;
+    font-size: 1em;
+    color: var(--body-color);
+    padding: .5em;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    border: 1px solid var(--select-border-color);
+    box-shadow: none;
+    border-radius: .5em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(0,0,0,.25);
+    background-image: var(--select-glyph);
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+  }
 
-    select::-ms-expand {
-    	display: none;
-    }
+  select::-ms-expand {
+  	display: none;
+  }
 
-    select[multiple] {
-      color: var(--body-color);
-    	display: inline-block;
-    	color: #444;
-    	padding: 0.5em;
-      border-radius: 0;
-    	width: 100%;
-    	max-width: 250px;
-    	box-sizing: border-box;
-    	border: 1px solid var(--select-border-color);
-    	background: rgba(0,0,0,.25);
-    }
+  select[multiple] {
+    color: var(--body-color);
+  	display: inline-block;
+  	color: #444;
+  	padding: 0.5em;
+    border-radius: 0;
+  	width: 100%;
+  	max-width: 250px;
+  	box-sizing: border-box;
+  	border: 1px solid var(--select-border-color);
+  	background: rgba(0,0,0,.25);
+  }
 
-    select[multiple] > option {
-      color: var(--body-color);
-    }
+  select[multiple] > option {
+    color: var(--body-color);
+  }
 }
 
 input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea {
@@ -370,6 +389,33 @@ button, select, input[type='submit'], input[type='button'], input[type='checkbox
 }
 
 button, .button {
+    display: inline-block;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    background: var(--button-background);
+    color: var(--button-color);
+    font-size: 1em;
+    text-align: center;
+    transition: background 250ms ease-in-out,
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+button:hover, button:focus, .button:hover, .button:focus {
+    background: #0053ba;
+}
+
+button:focus, .button:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+button:active, .button:active {
+    transform: scale(0.99);
 }
 
 /* Animations */
