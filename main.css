@@ -29,6 +29,7 @@
 
   --kbd-font-family: var(--code-font-family);
   --kbd-border: 1px solid white;
+  --kbd-padding: .25em;
 
   --var-font-family: var(--code-font-family);
   --var--color: orange;
@@ -50,8 +51,12 @@
   --table-border: 1px solid white;
   --table-tr-even-background: rgba(255,255,255,0.1);
 
-  --select-border-color: white;
+  --select-border: 1px solid white;
   --select-glyph: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+  --select-option-background: var(--body-color);
+  --select-multiple-option-background: rgba(0,0,0,0);
+  --select-option-color: white;;
+  --select-multiple-option-color: var(--body-color);
 
   --input-border: 1px solid white;
   --input-max-width: 500px;
@@ -60,6 +65,7 @@
 
   --button-background: #09c5f4;
   --button-color: white;
+  --button-padding: .5em;
 }
 
 /* Body */
@@ -76,6 +82,7 @@ body {
   scrollbar-color: var(--body-scrollbar-color);
   line-height: 1.5;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 body > div {
@@ -123,7 +130,7 @@ kbd {
   font-family: var(--kbd-font-family);
   display: inline-block;
   user-select: all;
-  padding: 0.5em;
+  padding: var(--kbd-padding);
   border-radius: 5px;
   border: var(--kbd-border);
   font-family: var(--body-font-family);
@@ -285,84 +292,52 @@ fieldset {
 select {
   font-size: var(--input-font-size);
 	display: inline-block;
-	padding: .5em;
-	width: 100%;
-	max-width: 500px;
-	box-sizing: border-box;
+  color: var(--body-color);
+  padding: .5em;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+  border: var(--select-border);
+  box-shadow: none;
+  border-radius: .5em;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(0,0,0,.25);
+  background-image: var(--select-glyph);
+  background-repeat: no-repeat, repeat;
+  background-position: right .7em top 50%, 0 0;
+  background-size: .65em auto, 100%;
+}
+
+select::-ms-expand {
+  display: none;
 }
 
 select option {
-  background: var(--body-background);
+  background: var(--select-option-background);
+  color: var(--select-option-color)
 	font-weight: normal;
 }
 
 select[multiple] {
   color: var(--body-color);
-	display: inline-block;
-	color: #444;
-	padding: 0.5em;
+  display: inline-block;
+  padding: 1em;
   border-radius: 0;
 	width: 100%;
 	max-width: 250px;
 	box-sizing: border-box;
-	border: 1px solid var(--select-border-color);
+	border: var(--select-border);
 	background: rgba(0,0,0,.25);
 }
 
 select[multiple] > option {
-  color: var(--body-color);
-  background: rgba(0,0,0,0);
-}
-
-@supports(-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none) {
-  input[type='checkbox'], input[type='radio'] {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  }
-
-  select {
-    font-size: var(--input-font-size);
-    display: inline-block;
-    font-size: 1em;
-    color: var(--body-color);
-    padding: .5em;
-    width: 100%;
-    max-width: 500px;
-    box-sizing: border-box;
-    border: 1px solid var(--select-border-color);
-    box-shadow: none;
-    border-radius: .5em;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-    background: rgba(0,0,0,.25);
-    background-image: var(--select-glyph);
-    background-repeat: no-repeat, repeat;
-    background-position: right .7em top 50%, 0 0;
-    background-size: .65em auto, 100%;
-  }
-
-  select::-ms-expand {
-  	display: none;
-  }
-
-  select[multiple] {
-    color: var(--body-color);
-  	display: inline-block;
-  	color: #444;
-  	padding: 0.5em;
-    border-radius: 0;
-  	width: 100%;
-  	max-width: 250px;
-  	box-sizing: border-box;
-  	border: 1px solid var(--select-border-color);
-  	background: rgba(0,0,0,.25);
-  }
-
-  select[multiple] > option {
-    color: var(--body-color);
-  }
+  color: var(--select-multiple-option-color);
+  background: var(--select-multiple-option-background);
+  border-radius: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea {
@@ -388,34 +363,27 @@ button, select, input[type='submit'], input[type='button'], input[type='checkbox
   cursor: pointer;
 }
 
-button, .button {
-    display: inline-block;
-    border: none;
-    padding: 1rem 2rem;
-    margin: 0;
-    text-decoration: none;
-    background: var(--button-background);
-    color: var(--button-color);
-    font-size: 1em;
-    text-align: center;
-    transition: background 250ms ease-in-out,
-                transform 150ms ease;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+button, input[type="submit"], .button {
+  cursor: pointer;
+  display: inline-block;
+  border: none;
+  padding: var(--button-padding);
+  border-radius: .5em;
+  margin: 0;
+  text-decoration: none;
+  background: var(--button-background);
+  color: var(--button-color);
+  font-size: 1em;
+  font-family: inherit;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
 }
 
-button:hover, button:focus, .button:hover, .button:focus {
-    background: #0053ba;
-}
-
-button:focus, .button:focus {
-    outline: 1px solid #fff;
-    outline-offset: -4px;
-}
-
-button:active, .button:active {
-    transform: scale(0.99);
+button:active, input[type="submit"]:active, .button:active {
+    transform: scale(0.95);
 }
 
 /* Animations */
